@@ -243,7 +243,7 @@ class CleanBoostApp(tk.Tk):
             try:
                 result = work()
             except Exception as exc:  # noqa: BLE001 - surfaced to the caller
-                self._ui_queue.put(lambda: done(None, exc))
+                self._ui_queue.put(lambda exc=exc: done(None, exc))
             else:
                 self._ui_queue.put(lambda: done(result, None))
 
